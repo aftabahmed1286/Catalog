@@ -1,3 +1,12 @@
+//
+//  ProductDetailView.swift
+//  ProductCatalogApp
+//
+//  Created by Aftab Ahmed on 07/10/25.
+//
+import SwiftUI
+import SwiftData
+
 struct ProductDetailView: View {
     let product: Product
     

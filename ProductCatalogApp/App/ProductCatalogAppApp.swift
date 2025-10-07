@@ -17,20 +17,23 @@ struct ProductCatalogAppApp: App {
     //Cloudkit container id - "iCloud.poc.flyct.invoic"
     //Model Configuration with the cloud container id
     let configuration = ModelConfiguration(
-        "iCloud.poc.flyct.invoic"
+        "iCloud.poc.flyct.product"
     )
     
     init() {
         do {
-            self.modelContainer = try ModelContainer(for: Product.self , configurations: configuration)
-        } catch {
-            fatalError("Not able to initialize the CloudKit store")
+            self.modelContainer = try ModelContainer(
+                for: Product.self ,
+                configurations: configuration
+            )
+        } catch (let err){
+            fatalError("Not able to initialize the CloudKit store: \(err.localizedDescription)")
         }
     }
     
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            Catalog()
                 .modelContainer(modelContainer)
         }
     }

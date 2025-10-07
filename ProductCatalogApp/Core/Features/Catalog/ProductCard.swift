@@ -1,3 +1,12 @@
+//
+//  ProductCard.swift
+//  ProductCatalogApp
+//
+//  Created by Aftab Ahmed on 07/10/25.
+//
+import SwiftUI
+import SwiftData
+
 struct ProductCard: View {
     let product: Product
     
