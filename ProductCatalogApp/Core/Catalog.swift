@@ -6,8 +6,17 @@
 //
 
 import SwiftUI
+import SwiftData
 
-struct ContentView: View {
+struct Catalog: View {
+    
+    @Environment(\.modelContext) private var context
+    @Query private var products: [Product]
+    
+    init() {
+        _products = Query(FetchDescriptor<Product>())
+    }
+    
     var body: some View {
         VStack {
             Image(systemName: "globe")
@@ -20,5 +29,5 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    Catalog()
 }
