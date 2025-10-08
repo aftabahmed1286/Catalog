@@ -12,6 +12,7 @@ struct Catalog: View {
     @Environment(\.modelContext) private var context
     @Query private var products: [Product]
     @Namespace private var animation
+    @State private var showAddSheet = false
     
     init() {
         _products = Query(FetchDescriptor<Product>(
@@ -42,6 +43,19 @@ struct Catalog: View {
                 .animation(.spring(duration: 0.4), value: products.count)
             }
             .navigationTitle("Catalog")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        showAddSheet = true
+                    } label: {
+                        Image(systemName: "plus.circle.fill")
+                            .font(.title2)
+                    }
+                }
+            }
+            .sheet(isPresented: $showAddSheet) {
+                ProductFormView()
+            }
         }
     }
 }
