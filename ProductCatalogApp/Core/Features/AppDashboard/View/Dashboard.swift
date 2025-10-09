@@ -35,6 +35,8 @@ struct Dashboard: View {
                     
                     goToLowStock
                     
+                    goToCustomers
+                    
                 }
                 .padding(.horizontal)
                 
@@ -135,6 +137,20 @@ struct Dashboard: View {
             .cornerRadius(12)
         }
         .disabled(summary.lowStockCount == 0)
+    }
+
+    var goToCustomers: some View {
+        NavigationLink(destination: CustomerListView()) {
+            HStack {
+                Image(systemName: "person.3.fill")
+                Text("Manage Customers")
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.orange)
+            .foregroundColor(.white)
+            .cornerRadius(12)
+        }
     }
     
     
