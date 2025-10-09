@@ -123,7 +123,7 @@ struct Dashboard: View {
     
     var goToLowStock: some View {
         let summary = viewModel.getInventorySummary(in: inventories)
-        return NavigationLink(destination: LowStockView()) {
+        return NavigationLink(destination: LowStockView(viewModel: viewModel)) {
             HStack {
                 Image(systemName: "exclamationmark.triangle.fill")
                 Text("Low Stock Alert")

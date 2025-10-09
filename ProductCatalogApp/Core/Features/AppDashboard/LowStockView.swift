@@ -9,7 +9,7 @@ import SwiftData
 
 struct LowStockView: View {
     @Query private var inventories: [Inventory]
-    @State private var viewModel = InventoryViewModel()
+    let viewModel: InventoryViewModel
     
     private var lowStockProducts: [Product] {
         viewModel.getLowStockProducts(in: inventories)
