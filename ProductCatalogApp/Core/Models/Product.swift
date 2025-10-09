@@ -15,6 +15,9 @@ class Product {
     var price: Double = 0.0
     var imageData: Data?
     var lastUpdated: Date = Date.now
+    
+    @Relationship(deleteRule: .cascade, inverse: \Inventory.product)
+    var inventories: [Inventory]?
 
     init(
         id: UUID = UUID(),
@@ -30,6 +33,7 @@ class Product {
         self.price = price
         self.imageData = imageData
         self.lastUpdated = lastUpdated
+        self.inventories = []
     }
 }
 

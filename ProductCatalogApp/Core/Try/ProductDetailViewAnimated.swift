@@ -65,12 +65,14 @@ struct ProductDetailViewAnimated: View {
     }
 }
 
-#Preview {
-    ProductDetailViewAnimated(product: Product(
-        name: "Tomato Ketchup",
-        barcode: "SC001",
-        price: 2.99,
-        imageData: Product.loadImage(named: "tomato"),
-        lastUpdated: .now
-    ))
-}
+//#Preview {
+//    ProductDetailViewAnimated(product: Product(
+//        name: "Tomato Ketchup",
+//        barcode: "SC001",
+//        price: 2.99,
+//        imageData: Product.loadImage(named: "tomato"),
+//        lastUpdated: .now
+//    ))
+//}
+
+

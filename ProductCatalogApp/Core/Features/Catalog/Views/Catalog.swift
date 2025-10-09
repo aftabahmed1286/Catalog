@@ -48,7 +48,7 @@ struct Catalog: View {
                     Button {
                         showAddSheet = true
                     } label: {
-                        Image(systemName: "plus.circle.fill")
+                        Image(systemName: "plus")
                             .font(.title2)
                     }
                 }

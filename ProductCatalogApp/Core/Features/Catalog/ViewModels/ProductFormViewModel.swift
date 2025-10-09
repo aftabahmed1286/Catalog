@@ -53,7 +53,11 @@ final class ProductFormViewModel {
     
     func save(context: ModelContext, dismiss: () -> Void) {
         if isNew { context.insert(product) }
-        try? context.save()
+        do {
+            try context.save()
+        } catch (let err){
+            print("Err: \(err.localizedDescription)")
+        }
         dismiss()
     }
 }

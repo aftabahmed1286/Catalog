@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import CloudKit
 
 @main
 struct ProductCatalogAppApp: App {
@@ -17,13 +18,13 @@ struct ProductCatalogAppApp: App {
     //Cloudkit container id - "iCloud.poc.flyct.invoic"
     //Model Configuration with the cloud container id
     let configuration = ModelConfiguration(
-        "iCloud.poc.flyct.product"
+        cloudKitDatabase: .private("iCloud.poc.flyct.product")
     )
     
     init() {
         do {
             self.modelContainer = try ModelContainer(
-                for: Product.self ,
+                for: Product.self, Inventory.self,
                 configurations: configuration
             )
         } catch (let err){
@@ -33,8 +34,11 @@ struct ProductCatalogAppApp: App {
     
     var body: some Scene {
         WindowGroup {
-            Catalog()
+            Dashboard()
                 .modelContainer(modelContainer)
+                
         }
     }
 }
+
+
