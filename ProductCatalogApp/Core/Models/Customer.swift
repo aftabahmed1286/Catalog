@@ -18,6 +18,10 @@ class Customer {
     var address: String = ""
     var lastUpdated: Date = Date.now
     
+    @Relationship(deleteRule: .nullify, inverse: \Invoice.customer)
+    var invoices: [Invoice]? = []
+    
+    
     init(
         id: UUID = UUID(),
         name: String = "",

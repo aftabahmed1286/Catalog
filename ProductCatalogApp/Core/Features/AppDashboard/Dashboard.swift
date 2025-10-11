@@ -1,19 +1,19 @@
 //
-//  InventoryTestView.swift
+//  Dashboard.swift
 //  ProductCatalogApp
 //
-//  Created by Aftab Ahmed on 07/10/25.
+//  Created by Aftab Ahmed on 09/10/25.
 //
 
 import SwiftUI
 import SwiftData
 
 struct Dashboard: View {
-    
     @Environment(\.modelContext) private var modelContext
-    
     @Query private var products: [Product]
     @Query private var inventories: [Inventory]
+    @Query private var customers: [Customer]
+    @Query private var invoices: [Invoice]
     
     @State private var viewModel = InventoryViewModel()
     
@@ -28,15 +28,12 @@ struct Dashboard: View {
                 
                 // Navigation Buttons
                 VStack(spacing: 12) {
-                    
                     goToCatalog
-                    
                     goToInventory
-                    
                     goToLowStock
-                    
                     goToCustomers
-                    
+                    goToInvoices
+                    goToPaymentReceipt
                 }
                 .padding(.horizontal)
                 
@@ -72,23 +69,23 @@ struct Dashboard: View {
             
             SummaryCard(
                 title: "Products",
-                value: "\(summary.totalProducts)",
+                value: "\(products.count)",
                 icon: "cube.box",
                 color: .blue
             )
             
             SummaryCard(
-                title: "Total Units",
-                value: "\(summary.totalUnits)",
-                icon: "number",
+                title: "Customers",
+                value: "\(customers.count)",
+                icon: "person.3",
                 color: .green
             )
             
             SummaryCard(
-                title: "Low Stock",
-                value: "\(summary.lowStockCount)",
-                icon: "exclamationmark.triangle",
-                color: summary.lowStockCount > 0 ? .red : .gray
+                title: "Invoices",
+                value: "\(invoices.count)",
+                icon: "doc.text",
+                color: .orange
             )
         }
         .padding(.horizontal)
@@ -138,7 +135,7 @@ struct Dashboard: View {
         }
         .disabled(summary.lowStockCount == 0)
     }
-
+    
     var goToCustomers: some View {
         NavigationLink(destination: CustomerListView()) {
             HStack {
@@ -153,17 +150,56 @@ struct Dashboard: View {
         }
     }
     
+    var goToInvoices: some View {
+        NavigationLink(destination: InvoicesView()) {
+            HStack {
+                Image(systemName: "doc.text.fill")
+                Text("Manage Invoices")
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.purple)
+            .foregroundColor(.white)
+            .cornerRadius(12)
+        }
+    }
     
+    var goToPaymentReceipt: some View {
+        NavigationLink(destination: PaymentReceiptView()) {
+            HStack {
+                Image(systemName: "creditcard.fill")
+                Text("Payment Receipt")
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color.indigo)
+            .foregroundColor(.white)
+            .cornerRadius(12)
+        }
+    }
     
     private func loadSampleData() {
         // Clear existing data
         for inventory in inventories {
             modelContext.delete(inventory)
         }
+        for invoice in invoices {
+            modelContext.delete(invoice)
+        }
         
         // Add sample inventory data
         for inventory in Inventory.sampleData {
             modelContext.insert(inventory)
+        }
+        
+        // Add sample customer data
+        for customer in Customer.sampleData {
+            modelContext.insert(customer)
+        }
+        
+        // Add sample invoice data
+        for invoice in Invoice.sampleData {
+            modelContext.insert(invoice)
         }
         
         do {
@@ -174,13 +210,36 @@ struct Dashboard: View {
     }
 }
 
-
-
-
+//struct SummaryCard: View {
+//    let title: String
+//    let value: String
+//    let icon: String
+//    let color: Color
+//    
+//    var body: some View {
+//        VStack(spacing: 8) {
+//            Image(systemName: icon)
+//                .font(.title2)
+//                .foregroundColor(color)
+//            
+//            Text(value)
+//                .font(.title)
+//                .fontWeight(.bold)
+//            
+//            Text(title)
+//                .font(.caption)
+//                .foregroundColor(.secondary)
+//        }
+//        .frame(maxWidth: .infinity)
+//        .padding()
+//        .background(color.opacity(0.1))
+//        .cornerRadius(12)
+//    }
+//}
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
-    let container = try! ModelContainer(for: Product.self, Inventory.self, configurations: config)
+    let container = try! ModelContainer(for: Product.self, Inventory.self, Customer.self, Invoice.self, LineItem.self, PaymentReceipt.self, configurations: config)
     
     // Add sample data
     let context = container.mainContext
@@ -190,7 +249,14 @@ struct Dashboard: View {
     for inventory in Inventory.sampleData {
         context.insert(inventory)
     }
+    for customer in Customer.sampleData {
+        context.insert(customer)
+    }
+    for invoice in Invoice.sampleData {
+        context.insert(invoice)
+    }
     
     return Dashboard()
         .modelContainer(container)
 }
+

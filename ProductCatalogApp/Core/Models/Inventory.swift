@@ -10,7 +10,8 @@ import SwiftData
 @Model
 class Inventory {
     var id: UUID = UUID()
-    // Relationship to Product (must have inverse)
+    
+    /// The product this inventory entry is for. Inverse relationship managed from Product.
     var product: Product?
     
     var unitsPerCarton: Int = 0
@@ -75,3 +76,4 @@ extension Inventory {
         )
     ]
 }
+

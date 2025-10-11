@@ -24,7 +24,7 @@ struct ProductCatalogAppApp: App {
     init() {
         do {
             self.modelContainer = try ModelContainer(
-                for: Product.self, Inventory.self, Customer.self,
+                for: Product.self, Inventory.self, Customer.self, Invoice.self, LineItem.self, PaymentReceipt.self,
                 configurations: configuration
             )
         } catch (let err){

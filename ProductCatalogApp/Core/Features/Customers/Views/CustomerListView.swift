@@ -27,24 +27,12 @@ struct CustomerListView: View {
             if customers.isEmpty {
                 emptyState
             } else {
-                ForEach(customers) { customer in
-                    Button {
-                        editingCustomer = customer
-                    } label: {
-                        CustomerRow(customer: customer)
-                    }
-                    .buttonStyle(.plain)
-                }
-                .onDelete(perform: delete)
+                allCustomer
             }
         }
         .navigationTitle("Customers")
         .toolbar {
-            ToolbarItem(placement: .navigationBarTrailing) {
-                Button(action: { showingAdd = true }) {
-                    Image(systemName: "plus")
-                }
-            }
+            addCustomer
         }
         .sheet(isPresented: $showingAdd) {
             CustomerFormView()
@@ -52,6 +40,26 @@ struct CustomerListView: View {
         .sheet(item: $editingCustomer) { customer in
             CustomerFormView(customer: customer)
         }
+    }
+    
+    private var addCustomer: some ToolbarContent {
+        ToolbarItem(placement: .navigationBarTrailing) {
+            Button(action: { showingAdd = true }) {
+                Image(systemName: "plus")
+            }
+        }
+    }
+    
+    private var allCustomer: some View {
+        ForEach(customers) { customer in
+            Button {
+                editingCustomer = customer
+            } label: {
+                CustomerRow(customer: customer)
+            }
+            .buttonStyle(.plain)
+        }
+        .onDelete(perform: delete)
     }
     
     private var emptyState: some View {
