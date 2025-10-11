@@ -27,6 +27,8 @@ class PaymentReceiptViewModel {
             .reduce(0) { $0 + $1.totalAmount }
     }
     
+    // MARK: - Payment Receipt Management
+    
     func createPaymentReceipt(customer: Customer, paidInvoices: [Invoice]) throws -> PaymentReceipt {
         guard let context = modelContext else { throw InvoiceError.noModelContext }
         

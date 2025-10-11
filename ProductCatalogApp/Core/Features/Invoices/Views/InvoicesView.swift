@@ -98,16 +98,9 @@ struct InvoicesView: View {
                 }
                 .buttonStyle(.plain)
                 .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-//                    Button("Delete", role: .destructive) {
-//                        deleteInvoice(invoice)
-//                    }
-                    
-//                    if invoice.status != .paid {
-//                        Button("Mark Paid") {
-//                            markAsPaid(invoice)
-//                        }
-//                        .tint(.green)
-//                    }
+                    Button("Delete", role: .destructive) {
+                        deleteInvoice(invoice)
+                    }
                 }
             }
         }
@@ -146,103 +139,22 @@ struct InvoicesView: View {
         }
     }
     
-//    private func deleteInvoice(_ invoice: Invoice) {
-//        withAnimation {
-//            do {
-//                try viewModel.deleteInvoice(invoice)
-//            } catch {
-//                print("Failed to delete invoice: \(error)")
-//            }
-//        }
-//    }
-    
-    private func markAsPaid(_ invoice: Invoice) {
-        do {
-            try viewModel.updateInvoiceStatus(invoice, status: .paid)
-        } catch {
-            print("Failed to update invoice status: \(error)")
-        }
-    }
-}
-
-struct InvoiceRow: View {
-    let invoice: Invoice
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(invoice.invoiceNumber)
-                        .font(.headline)
-                        .foregroundColor(.primary)
-                    
-                    Text(invoice.customer?.name ?? "No Customer")
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
-                VStack(alignment: .trailing) {
-                    Text("$\(invoice.totalAmount, specifier: "%.2f")")
-                        .font(.headline)
-                        .foregroundColor(.blue)
-                    
-                    Text(invoice.status.rawValue)
-                        .font(.caption)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(invoice.status.color.opacity(0.2))
-                        .foregroundColor(invoice.status.color)
-                        .cornerRadius(8)
-                }
-            }
-            
-            HStack {
-                Text("Date: \(invoice.invoiceDate, style: .date)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-                
-                Spacer()
-                
-                Text("Items: \(invoice.lineItems?.count ?? 0)")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-            
-            if let lineItems = invoice.lineItems, lineItems.isEmpty {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("Line Items:")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                    
-                    ForEach(lineItems.prefix(2)) { item in
-                        HStack {
-                            Text("• \(item.name)")
-                                .font(.caption)
-                            Spacer()
-                            Text("Qty: \(item.quantity)")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                        }
-                    }
-                    
-                    if let lineItems = invoice.lineItems, lineItems.count > 2 {
-                        Text("+ \(lineItems.count - 2) more items")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                }
+    private func deleteInvoice(_ invoice: Invoice) {
+        withAnimation {
+            do {
+                try viewModel.deleteInvoice(invoice)
+            } catch {
+                print("Failed to delete invoice: \(error)")
             }
         }
-        .padding(.vertical, 8)
     }
+    
 }
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)
     let container = try! ModelContainer(for: Invoice.self, LineItem.self, Customer.self, Product.self, configurations: config)
-    
+
     // Add sample data
     let context = container.mainContext
     for customer in Customer.sampleData {
@@ -251,6 +163,7 @@ struct InvoiceRow: View {
     for product in Product.sampleData {
         context.insert(product)
     }
+    
     for invoice in Invoice.sampleData {
         context.insert(invoice)
     }

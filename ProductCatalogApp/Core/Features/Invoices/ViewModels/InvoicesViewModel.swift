@@ -26,31 +26,13 @@ class InvoicesViewModel {
     
     // MARK: - Invoice Management
     
-//    func deleteInvoice(_ invoice: Invoice) throws {
-//        guard let context = modelContext else { throw InvoiceError.noModelContext }
-//        
-//        // Delete associated line items
-//        for lineItem in invoice.lineItems {
-//            context.delete(lineItem)
-//        }
-//        
-//        context.delete(invoice)
-//        try context.save()
-//    }
-    
-    func updateInvoiceStatus(_ invoice: Invoice, status: InvoiceStatus) throws {
+    func deleteInvoice(_ invoice: Invoice) throws {
         guard let context = modelContext else { throw InvoiceError.noModelContext }
-        
-//        invoice.status = status
-        invoice.lastUpdated = Date.now
-        
+        context.delete(invoice)
         try context.save()
     }
     
     // MARK: - Line Item Management
-    
-    
-    
     func updateLineItem(_ lineItem: LineItem, quantity: Int, price: Double, vatPercentage: Double) throws {
         guard let context = modelContext else { throw InvoiceError.noModelContext }
         
@@ -62,22 +44,7 @@ class InvoicesViewModel {
         try context.save()
     }
     
-    func deleteLineItem(_ lineItem: LineItem) throws {
-        guard let context = modelContext else { throw InvoiceError.noModelContext }
-        
-        context.delete(lineItem)
-        try context.save()
-    }
-    
-    // MARK: - Payment Receipt Management
-    
-    
-    
-    
-    
     // MARK: - Analytics
-    
-    
     func getInvoicesByStatus(_ status: InvoiceStatus, in invoices: [Invoice]) -> [Invoice] {
         invoices.filter { $0.status == status }
     }

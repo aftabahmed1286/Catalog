@@ -137,25 +137,38 @@ struct InvoiceFormView: View {
     
     private var addLineItemButton: some View {
         @Bindable var vm = viewModel
-        return Button(action: { vm.showingProductPicker = true }) {
+        let filteredProducts = vm.filterSelectedProductsFrom(products)
+        return Button(action: {
+            if filteredProducts.count == 0 { return }
+            vm.showingProductPicker = true
+        }) {
             HStack {
                 Image(systemName: "plus.circle")
+                    .opacity(filteredProducts.count == 0 ? 0.5 : 1.0)
                 Text("Add Line Item")
+                    .opacity(filteredProducts.count == 0 ? 0.5 : 1.0)
+                    .disabled(filteredProducts.count == 0)
             }
         }
         .sheet(isPresented: $vm.showingProductPicker) {
-            ProductPickerView(
-                products: products,
-                onProductSelected: { product in
-                    let lineItem = vm.createLineItem(
-                        product: product,
-                        quantity: 1,
-                        price: product.price,
-                        vatPercentage: 15.0
-                    )
-                    vm.lineItems.append(lineItem)
-                }
-            )
+            
+            if filteredProducts.count > 0 {
+                ProductPickerView(
+                    products: filteredProducts,
+                    onProductSelected: { product in
+                        let lineItem = vm.createLineItem(
+                            product: product,
+                            quantity: 1,
+                            price: product.price,
+                            vatPercentage: 15.0
+                        )
+                        vm.lineItems.append(lineItem)
+                    }
+                )
+            } else {
+                
+            }
+            
         }
     }
     
@@ -211,153 +224,6 @@ struct InvoiceFormView: View {
     }
 }
 
-struct LineItemRow: View {
-    let lineItem: LineItem
-    let onUpdate: (LineItem) -> Void
-    let onDelete: () -> Void
-    
-    @State private var quantity: Int
-    @State private var price: Double
-    @State private var vatPercentage: Double
-    
-    init(lineItem: LineItem, onUpdate: @escaping (LineItem) -> Void, onDelete: @escaping () -> Void) {
-        self.lineItem = lineItem
-        self.onUpdate = onUpdate
-        self.onDelete = onDelete
-        self._quantity = State(initialValue: lineItem.quantity)
-        self._price = State(initialValue: lineItem.price)
-        self._vatPercentage = State(initialValue: lineItem.vatPercentage)
-    }
-    
-    var body: some View {
-        VStack(alignment: .leading, spacing: 8) {
-            HStack {
-                VStack(alignment: .leading) {
-                    Text(lineItem.name)
-                        .font(.headline)
-                    Text("Barcode: \(lineItem.barcode)")
-                        .font(.caption)
-                        .foregroundColor(.secondary)
-                }
-                
-                Spacer()
-                
-                Button(action: onDelete) {
-                    Image(systemName: "trash")
-                        .foregroundColor(.red)
-                }
-            }
-            
-            HStack {
-                VStack(alignment: .leading) {
-                    Text("Quantity")
-                        .font(.caption)
-                    Stepper("", value: $quantity, in: 1...999)
-                        .onChange(of: quantity) { _, newValue in
-                            updateLineItem()
-                        }
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("Price")
-                        .font(.caption)
-                    TextField("Price", value: $price, format: .currency(code: "USD"))
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: price) { _, newValue in
-                            updateLineItem()
-                        }
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("VAT %")
-                        .font(.caption)
-                    TextField("VAT %", value: $vatPercentage, format: .number)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .onChange(of: vatPercentage) { _, newValue in
-                            updateLineItem()
-                        }
-                }
-            }
-            
-            HStack {
-                Text("Amount: $\(lineItem.amount, specifier: "%.2f")")
-                    .font(.subheadline)
-                    .fontWeight(.medium)
-                
-                Spacer()
-                
-                Text("VAT: $\(lineItem.vatAmount, specifier: "%.2f")")
-                    .font(.caption)
-                    .foregroundColor(.secondary)
-            }
-        }
-        .padding(.vertical, 4)
-    }
-    
-    private func updateLineItem() {
-        lineItem.quantity = quantity
-        lineItem.price = price
-        lineItem.vatPercentage = vatPercentage
-        onUpdate(lineItem)
-    }
-}
-
-struct ProductPickerView: View {
-    let products: [Product]
-    let onProductSelected: (Product) -> Void
-    @Environment(\.dismiss) private var dismiss
-    
-    var body: some View {
-        NavigationStack {
-            List(products) { product in
-                Button(action: {
-                    onProductSelected(product)
-                    dismiss()
-                }) {
-                    HStack {
-                        if let imageData = product.imageData,
-                           let uiImage = UIImage(data: imageData) {
-                            Image(uiImage: uiImage)
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 50, height: 50)
-                                .clipShape(RoundedRectangle(cornerRadius: 8))
-                        } else {
-                            RoundedRectangle(cornerRadius: 8)
-                                .fill(Color.gray.opacity(0.3))
-                                .frame(width: 50, height: 50)
-                                .overlay(
-                                    Image(systemName: "photo")
-                                        .foregroundColor(.gray)
-                                )
-                        }
-                        
-                        VStack(alignment: .leading) {
-                            Text(product.name)
-                                .font(.headline)
-                            Text("Barcode: \(product.barcode)")
-                                .font(.caption)
-                                .foregroundColor(.secondary)
-                            Text("$\(product.price, specifier: "%.2f")")
-                                .font(.subheadline)
-                                .foregroundColor(.blue)
-                        }
-                        
-                        Spacer()
-                    }
-                }
-                .buttonStyle(.plain)
-            }
-            .navigationTitle("Select Product")
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cancel") { dismiss() }
-                }
-            }
-        }
-    }
-}
 
 #Preview {
     let config = ModelConfiguration(isStoredInMemoryOnly: true)

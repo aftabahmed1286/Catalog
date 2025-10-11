@@ -16,7 +16,7 @@ class Invoice {
     
     var customer: Customer?
     
-    @Relationship(deleteRule: .nullify, inverse: \LineItem.invoice)
+    @Relationship(deleteRule: .cascade, inverse: \LineItem.invoice)
     var lineItems: [LineItem]? = []
     
     var paymentReceipt: PaymentReceipt?
@@ -86,18 +86,25 @@ extension Invoice {
         Invoice(
             invoiceNumber: "T1",
             invoiceDate: Date.now,
-            deliveredDate: nil
+            deliveredDate: nil,
+            customer: Customer.sampleData[0],
+            lineItems: [LineItem.sampleData[0]]
         ),
         Invoice(
             invoiceNumber: "T2",
             invoiceDate: Date.now.addingTimeInterval(-86400),
-            deliveredDate: Date.now.addingTimeInterval(-3600) // overdue: delivered 1 hour ago
+            deliveredDate: Date.now.addingTimeInterval(-3600), // overdue: delivered 1 hour ago
+            customer: Customer.sampleData[1],
+            lineItems: [LineItem.sampleData[1], LineItem.sampleData[2], LineItem.sampleData[3]]
         ),
         Invoice(
             invoiceNumber: "T3",
             invoiceDate: Date.now.addingTimeInterval(-172800),
             deliveredDate: Date.now.addingTimeInterval(-86400),
+            customer: Customer.sampleData[2],
+            lineItems: [LineItem.sampleData[0]],
             paymentReceipt: PaymentReceipt() // assuming default init for demonstration
+            
         )
     ]
 }

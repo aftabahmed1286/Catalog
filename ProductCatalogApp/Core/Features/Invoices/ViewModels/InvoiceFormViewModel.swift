@@ -22,6 +22,17 @@ class InvoiceFormViewModel {
         self.modelContext = context
     }
     
+    func filterSelectedProductsFrom(_ products: [Product]) -> [Product] {
+        if lineItems.count > 0 {
+            return products.filter{ prod in
+                !lineItems.contains(where: { $0.barcode == prod.barcode })
+            }
+        } else {
+            return products
+        }
+    }
+    
+    
     func createLineItem(product: Product, quantity: Int, price: Double, vatPercentage: Double) -> LineItem {
         return LineItem(
             product: product,

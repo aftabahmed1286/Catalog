@@ -50,13 +50,31 @@ class LineItem {
 extension LineItem {
     static var sampleData: [LineItem] = [
         LineItem(
-            product: nil, // Will be set when creating invoice
+            product: Product.sampleData[1], // Will be set when creating invoice
             quantity: 2,
             price: 10.99,
             vatPercentage: 15.0
         ),
         LineItem(
-            product: nil,
+            product: Product.sampleData[0],
+            quantity: 1,
+            price: 25.50,
+            vatPercentage: 15.0
+        ),
+        LineItem(
+            product: Product.sampleData[2],
+            quantity: 1,
+            price: 25.50,
+            vatPercentage: 15.0
+        ),
+        LineItem(
+            product: Product.sampleData[3],
+            quantity: 1,
+            price: 25.50,
+            vatPercentage: 15.0
+        ),
+        LineItem(
+            product: Product.sampleData[4],
             quantity: 1,
             price: 25.50,
             vatPercentage: 15.0
