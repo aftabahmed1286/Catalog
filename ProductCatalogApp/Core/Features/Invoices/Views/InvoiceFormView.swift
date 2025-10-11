@@ -13,9 +13,16 @@ struct InvoiceFormView: View {
     @Query private var customers: [Customer]
     @Query private var products: [Product]
     
-    @State private var viewModel = InvoiceFormViewModel()
+    @State private var viewModel: InvoiceFormViewModel
     
     init(invoice: Invoice? = nil) {
+        
+        _customers = Query(FetchDescriptor<Customer>(
+            sortBy: [SortDescriptor(\.name)]
+        ))
+        
+        _viewModel = State(wrappedValue: InvoiceFormViewModel())
+        
         self.viewModel.invoice = invoice
     }
     

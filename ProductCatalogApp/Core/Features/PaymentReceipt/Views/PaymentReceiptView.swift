@@ -14,16 +14,7 @@ struct PaymentReceiptView: View {
     @Query private var customers: [Customer]
     @Query private var invoices: [Invoice]
     
-    @State private var viewModel = PaymentReceiptViewModel()
-    
-//    init() {
-//        _invoices = Query(
-//            FetchDescriptor<Invoice>(
-//                predicate: #Predicate<Invoice> { $0.status.rawValue != InvoiceStatus.paid.rawValue },
-//                sortBy: [SortDescriptor(\.invoiceDate)]
-//            )
-//        )
-//    }
+    @State private var viewModel: PaymentReceiptViewModel
     
     init() {
         _invoices = Query(
@@ -31,6 +22,12 @@ struct PaymentReceiptView: View {
                 sortBy: [SortDescriptor(\.invoiceDate)]
             )
         )
+        
+        _customers = Query(FetchDescriptor<Customer>(
+            sortBy: [SortDescriptor(\.name)]
+        ))
+        
+        _viewModel = State(wrappedValue: PaymentReceiptViewModel())
     }
     
     private var customerInvoices: [Invoice] {

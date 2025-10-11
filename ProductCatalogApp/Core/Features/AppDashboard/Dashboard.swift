@@ -15,7 +15,20 @@ struct Dashboard: View {
     @Query private var customers: [Customer]
     @Query private var invoices: [Invoice]
     
-    @State private var viewModel = InventoryViewModel()
+    @State private var viewModel: InventoryViewModel
+    
+    init() {
+        
+        _viewModel = State(wrappedValue: InventoryViewModel())
+        
+        _products = Query(FetchDescriptor<Product>(
+            sortBy: [SortDescriptor(\.name)]
+        ))
+        
+        _customers = Query(FetchDescriptor<Customer>(
+            sortBy: [SortDescriptor(\.name)]
+        ))
+    }
     
     var body: some View {
         NavigationStack {
