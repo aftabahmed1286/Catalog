@@ -21,6 +21,17 @@ class PaymentReceiptViewModel {
         self.modelContext = context
     }
     
+    func customerInvoices(_ invoices: [Invoice]) -> [Invoice] {
+        guard let customer = selectedCustomer else { return [] }
+        return invoices.filter {
+            $0.customer?.id == customer.id && $0.status != .paid
+        }
+    }
+    
+    func totalAmount() -> Double {
+        selectedInvoices.reduce(0) { $0 + $1.totalAmount }
+    }
+    
     func getOutstandingAmount(for customer: Customer, in invoices: [Invoice]) -> Double {
         invoices
             .filter { $0.customer?.id == customer.id && $0.status != .paid }
@@ -28,6 +39,25 @@ class PaymentReceiptViewModel {
     }
     
     // MARK: - Payment Receipt Management
+    func generateReceipt() {
+        guard let customer = selectedCustomer else { return }
+        
+        do {
+            let receipt = try createPaymentReceipt(
+                customer: customer,
+                paidInvoices: Array(selectedInvoices)
+            )
+            generatedReceipt = receipt
+            showingReceipt = true
+            
+            // Clear selections
+            selectedInvoices.removeAll()
+            selectedCustomer = nil
+        } catch {
+            print("Failed to generate receipt: \(error)")
+        }
+    }
+    
     
     func createPaymentReceipt(customer: Customer, paidInvoices: [Invoice]) throws -> PaymentReceipt {
         guard let context = modelContext else { throw InvoiceError.noModelContext }
@@ -45,7 +75,6 @@ class PaymentReceiptViewModel {
         
         // Update invoice statuses to paid
         for invoice in paidInvoices {
-//            invoice.status = .paid
             invoice.lastUpdated = Date.now
         }
         
@@ -74,5 +103,7 @@ class PaymentReceiptViewModel {
         
         return "R1"
     }
+    
+    
     
 }

@@ -7,8 +7,6 @@
 import SwiftUI
 import SwiftData
 
-
-
 struct PaymentReceiptView: View {
     @Environment(\.modelContext) private var context
     @Query private var customers: [Customer]
@@ -31,12 +29,11 @@ struct PaymentReceiptView: View {
     }
     
     private var customerInvoices: [Invoice] {
-        guard let customer = viewModel.selectedCustomer else { return [] }
-        return invoices.filter { $0.customer?.id == customer.id }
+        viewModel.customerInvoices(invoices)
     }
     
     private var totalAmount: Double {
-        viewModel.selectedInvoices.reduce(0) { $0 + $1.totalAmount }
+        viewModel.totalAmount()
     }
     
     var body: some View {
@@ -196,23 +193,7 @@ struct PaymentReceiptView: View {
     }
     
     private func generateReceipt() {
-        @Bindable var vm = viewModel
-        guard let customer = vm.selectedCustomer else { return }
-        
-        do {
-            let receipt = try vm.createPaymentReceipt(
-                customer: customer,
-                paidInvoices: Array(vm.selectedInvoices)
-            )
-            vm.generatedReceipt = receipt
-            vm.showingReceipt = true
-            
-            // Clear selections
-            vm.selectedInvoices.removeAll()
-            vm.selectedCustomer = nil
-        } catch {
-            print("Failed to generate receipt: \(error)")
-        }
+        viewModel.generateReceipt()
     }
 }
 
