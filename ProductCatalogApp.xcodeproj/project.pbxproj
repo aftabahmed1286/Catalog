@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		394F8CE62E9BBAFF0043E5CF /* PaymentReceipt in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CE52E9BBAFF0043E5CF /* PaymentReceipt */; };
+		394F8CE82E9BFDCD0043E5CF /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CE72E9BFDCD0043E5CF /* Core */; };
+		394F8CEB2E9C01040043E5CF /* Product in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CEA2E9C01040043E5CF /* Product */; };
 		39B9AF372E9BADCA002F0945 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 39B9AF362E9BADCA002F0945 /* Core */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +43,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				394F8CEB2E9C01040043E5CF /* Product in Frameworks */,
+				394F8CE62E9BBAFF0043E5CF /* PaymentReceipt in Frameworks */,
 				39B9AF372E9BADCA002F0945 /* Core in Frameworks */,
+				394F8CE82E9BFDCD0043E5CF /* Core in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -84,6 +90,9 @@
 			name = ProductCatalogApp;
 			packageProductDependencies = (
 				39B9AF362E9BADCA002F0945 /* Core */,
+				394F8CE52E9BBAFF0043E5CF /* PaymentReceipt */,
+				394F8CE72E9BFDCD0043E5CF /* Core */,
+				394F8CEA2E9C01040043E5CF /* Product */,
 			);
 			productName = ProductCatalogApp;
 			productReference = 3924D2A72E95223F00F5D8CB /* ProductCatalogApp.app */;
@@ -115,6 +124,8 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				39B9AF352E9BADCA002F0945 /* XCLocalSwiftPackageReference "../CatalogPackages/Core" */,
+				394F8CE42E9BBAFF0043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/PaymentReceipt" */,
+				394F8CE92E9C01040043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/Product" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3924D2A82E95223F00F5D8CB /* Products */;
@@ -390,6 +401,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
+		394F8CE42E9BBAFF0043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/PaymentReceipt" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CatalogPackages/PaymentReceipt;
+		};
+		394F8CE92E9C01040043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/Product" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CatalogPackages/Product;
+		};
 		39B9AF352E9BADCA002F0945 /* XCLocalSwiftPackageReference "../CatalogPackages/Core" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../CatalogPackages/Core;
@@ -397,6 +416,18 @@
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		394F8CE52E9BBAFF0043E5CF /* PaymentReceipt */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = PaymentReceipt;
+		};
+		394F8CE72E9BFDCD0043E5CF /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		394F8CEA2E9C01040043E5CF /* Product */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Product;
+		};
 		39B9AF362E9BADCA002F0945 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Core;
