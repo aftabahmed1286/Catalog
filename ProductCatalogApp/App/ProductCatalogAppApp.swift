@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import CloudKit
+import Core
 
 @main
 struct ProductCatalogAppApp: App {

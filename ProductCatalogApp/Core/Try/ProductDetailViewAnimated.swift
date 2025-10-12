@@ -7,6 +7,7 @@
 
 
 import SwiftUI
+import Core
 
 struct ProductDetailViewAnimated: View {
     let product: Product

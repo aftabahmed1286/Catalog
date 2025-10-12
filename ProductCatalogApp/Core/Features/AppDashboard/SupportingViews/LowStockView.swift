@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SwiftData
+import Core
 
 struct LowStockView: View {
     @Query private var inventories: [Inventory]

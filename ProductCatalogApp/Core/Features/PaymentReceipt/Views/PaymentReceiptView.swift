@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SwiftData
+import Core
 
 struct PaymentReceiptView: View {
     @Environment(\.modelContext) private var context

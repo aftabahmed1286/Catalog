@@ -6,7 +6,7 @@
 //
 import SwiftUI
 import SwiftData
-
+import Core
 
 struct LineItemRow: View {
     let lineItem: LineItem

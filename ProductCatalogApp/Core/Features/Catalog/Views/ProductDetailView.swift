@@ -7,6 +7,7 @@
 import SwiftUI
 import SwiftData
 import Observation
+import Core
 
 struct ProductDetailView: View {
     @Environment(\.dismiss) private var dismiss

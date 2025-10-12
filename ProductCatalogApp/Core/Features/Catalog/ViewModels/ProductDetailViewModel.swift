@@ -8,6 +8,7 @@ import Foundation
 import SwiftUI
 import SwiftData
 import Observation
+import Core
 
 @Observable
 final class ProductDetailViewModel {

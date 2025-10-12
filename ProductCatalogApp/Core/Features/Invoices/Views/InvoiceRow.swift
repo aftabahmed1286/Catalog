@@ -5,6 +5,7 @@
 //  Created by Aftab Ahmed on 11/10/25.
 //
 import SwiftUI
+import Core
 
 struct InvoiceRow: View {
     

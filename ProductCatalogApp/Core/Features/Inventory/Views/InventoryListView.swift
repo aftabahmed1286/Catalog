@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Core
 
 struct InventoryListView: View {
     @Environment(\.modelContext) private var modelContext

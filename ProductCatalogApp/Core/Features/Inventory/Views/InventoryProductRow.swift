@@ -5,6 +5,7 @@
 //  Created by Aftab Ahmed on 09/10/25.
 //
 import SwiftUI
+import Core
 
 struct InventoryProductRow: View {
     let product: Product

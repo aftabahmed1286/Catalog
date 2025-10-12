@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SwiftData
+import Core
 
 struct ProductCard: View {
     let product: Product

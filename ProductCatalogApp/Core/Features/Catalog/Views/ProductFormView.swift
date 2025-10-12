@@ -9,6 +9,7 @@ import PhotosUI
 import SwiftData
 import Observation
 internal import UniformTypeIdentifiers
+import Core
 
 struct ProductFormView: View {
     @Environment(\.dismiss) private var dismiss

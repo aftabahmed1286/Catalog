@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SwiftData
+import Core
 
 struct CustomerListView: View {
     @Environment(\.modelContext) private var context

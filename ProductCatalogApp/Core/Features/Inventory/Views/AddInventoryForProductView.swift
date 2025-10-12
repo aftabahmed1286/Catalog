@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Core
 
 struct AddInventoryForProductView: View {
     @Environment(\.modelContext) private var modelContext

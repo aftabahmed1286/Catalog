@@ -9,6 +9,7 @@ import SwiftUI
 import PhotosUI
 import SwiftData
 import Observation
+import Core
 
 @Observable
 final class ProductFormViewModel {

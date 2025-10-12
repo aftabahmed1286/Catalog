@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import SwiftData
+import Core
 
 struct CustomerFormView: View {
     @Environment(\.dismiss) private var dismiss
