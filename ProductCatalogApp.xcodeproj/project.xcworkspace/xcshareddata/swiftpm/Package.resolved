@@ -1,0 +1,69 @@
+{
+  "originHash" : "6cd56cde79d1db4de71b97d70d0e59e3a82c2dea2b8a448e81174afcd103fb9d",
+  "pins" : [
+    {
+      "identity" : "core",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:aftabahmed1286/Core.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "cbccc8e4ba0dfb48832597951a77b9e1e90b0084"
+      }
+    },
+    {
+      "identity" : "customer",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:aftabahmed1286/Customer.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "3c81aaa9a8728672131d1e2cbc65dfbd5e3602e0"
+      }
+    },
+    {
+      "identity" : "dashboard",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:aftabahmed1286/Dashboard.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "61a6380b648ccb65c4be9bb108d96f4bfc78b2b0"
+      }
+    },
+    {
+      "identity" : "inventory",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:aftabahmed1286/Inventory.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "28c4b0e0cfd4eceedd2580a94966f0ea93f4594d"
+      }
+    },
+    {
+      "identity" : "invoice",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:aftabahmed1286/Invoice.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "05fba733e0db885989e1ee327acf1b36b54fa68b"
+      }
+    },
+    {
+      "identity" : "paymentreceipt",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:aftabahmed1286/PaymentReceipt.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "7a1c9efb9c0efb091035fea6c852384321d6b239"
+      }
+    },
+    {
+      "identity" : "product",
+      "kind" : "remoteSourceControl",
+      "location" : "git@github.com:aftabahmed1286/Product.git",
+      "state" : {
+        "branch" : "main",
+        "revision" : "62bd2e33f2969e34dfd9d4969c67825b15790beb"
+      }
+    }
+  ],
+  "version" : 3
+}
