@@ -10,6 +10,7 @@ import SwiftData
 import Core
 import PaymentReceipt
 import Product
+import Customer
 
 struct Dashboard: View {
     @Environment(\.modelContext) private var modelContext
