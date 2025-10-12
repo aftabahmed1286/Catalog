@@ -11,6 +11,7 @@ import Core
 import PaymentReceipt
 import Product
 import Customer
+import Invoice
 
 struct Dashboard: View {
     @Environment(\.modelContext) private var modelContext
