@@ -9,6 +9,7 @@ import SwiftUI
 import SwiftData
 import CloudKit
 import Core
+import Dashboard
 
 @main
 struct ProductCatalogAppApp: App {
