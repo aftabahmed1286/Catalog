@@ -83,7 +83,6 @@ struct AddInventoryForProductView: View {
                 .onChange(of: viewModel.selectedProductID) {
                     viewModel.updateSeletedProductFrom(products)
                 }
-                
             }
         } label: {
             VStack {
