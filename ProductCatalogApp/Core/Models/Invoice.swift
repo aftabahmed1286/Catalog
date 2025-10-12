@@ -82,29 +82,31 @@ enum InvoiceStatus: String, CaseIterable, Codable {
 }
 
 extension Invoice {
-    static var sampleData: [Invoice] = [
-        Invoice(
-            invoiceNumber: "T1",
-            invoiceDate: Date.now,
-            deliveredDate: nil,
-            customer: Customer.sampleData[0],
-            lineItems: [LineItem.sampleData[0]]
-        ),
-        Invoice(
-            invoiceNumber: "T2",
-            invoiceDate: Date.now.addingTimeInterval(-86400),
-            deliveredDate: Date.now.addingTimeInterval(-3600), // overdue: delivered 1 hour ago
-            customer: Customer.sampleData[1],
-            lineItems: [LineItem.sampleData[1], LineItem.sampleData[2], LineItem.sampleData[3]]
-        ),
-        Invoice(
-            invoiceNumber: "T3",
-            invoiceDate: Date.now.addingTimeInterval(-172800),
-            deliveredDate: Date.now.addingTimeInterval(-86400),
-            customer: Customer.sampleData[2],
-            lineItems: [LineItem.sampleData[0]],
-            paymentReceipt: PaymentReceipt() // assuming default init for demonstration
-            
-        )
-    ]
+    static var sampleData: [Invoice] {
+        [
+            Invoice(
+                invoiceNumber: "T1",
+                invoiceDate: Date.now,
+                deliveredDate: nil,
+                customer: Customer.sampleData[0],
+                lineItems: [LineItem.sampleData[0]]
+            ),
+            Invoice(
+                invoiceNumber: "T2",
+                invoiceDate: Date.now.addingTimeInterval(-86400),
+                deliveredDate: Date.now.addingTimeInterval(-3600), // overdue: delivered 1 hour ago
+                customer: Customer.sampleData[1],
+                lineItems: [LineItem.sampleData[1], LineItem.sampleData[2], LineItem.sampleData[3]]
+            ),
+            Invoice(
+                invoiceNumber: "T3",
+                invoiceDate: Date.now.addingTimeInterval(-172800),
+                deliveredDate: Date.now.addingTimeInterval(-86400),
+                customer: Customer.sampleData[2],
+                lineItems: [LineItem.sampleData[0]],
+                paymentReceipt: PaymentReceipt() // assuming default init for demonstration
+                
+            )
+        ]
+    }
 }

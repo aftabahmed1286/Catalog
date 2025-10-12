@@ -13,27 +13,22 @@ struct AddInventoryForProductView: View {
     @Environment(\.dismiss) private var dismiss
     @Query private var products: [Product]
     
-    let selectedProduct: Product?
-    
-    @State private var selectedProductID: UUID?
-    @State private var unitsPerCarton: Int = 1
-    @State private var numberOfCartons: Int = 1
+    @State var viewModel: AddInventoryForProductModel
     
     init(selectedProduct: Product? = nil) {
-        self.selectedProduct = selectedProduct
-        self._selectedProductID = State(initialValue: selectedProduct?.id)
+        _viewModel = State(wrappedValue: AddInventoryForProductModel(selectedProduct))
     }
     
     private var currentProduct: Product? {
-        products.first { $0.id == selectedProductID }
+        viewModel.currentProduct(products)
     }
     
     private var totalUnits: Int {
-        unitsPerCarton * numberOfCartons
+        viewModel.totalUnits()
     }
     
     private var isValid: Bool {
-        selectedProductID != nil && unitsPerCarton > 0 && numberOfCartons > 0
+        viewModel.isValid()
     }
     
     var body: some View {
@@ -41,7 +36,7 @@ struct AddInventoryForProductView: View {
             Form {
                 // Product Selection Section
                 Section("Product") {
-                    productDetail
+                    productPicker
                 }
                 
                 // Inventory Details Section
@@ -63,87 +58,82 @@ struct AddInventoryForProductView: View {
         }
     }
     
-    var productDetail: some View {
-        VStack (spacing: 20){
-            productPicker
-            
-            if let selectedProduct = selectedProduct {
-                // Pre-selected product
-                HStack {
-                    if let imageData = selectedProduct.imageData,
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .scaledToFit()
-                            .frame(width: 30, height: 30)
-                            .clipShape(RoundedRectangle(cornerRadius: 4))
-                        
-                    } else {
-                        RoundedRectangle(cornerRadius: 8)
-                            .fill(Color.gray.opacity(0.3))
-                            .frame(width: 50, height: 50)
-                            .overlay(
-                                Image(systemName: "photo")
-                                    .foregroundColor(.gray)
-                            )
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        Text(selectedProduct.name)
-                            .font(.headline)
-                        Text("Barcode: \(selectedProduct.barcode)")
-                            .font(.caption)
-                            .foregroundColor(.secondary)
-                    }
-                    
-                    Spacer()
-                }
-            }
-//            else {
-//                // Product picker
-//                
-//            }
-        }
-    }
-    
     var productPicker: some View {
-        Picker("Select Product", selection: $selectedProductID) {
-            Text("Choose a product")
-                .tag(nil as UUID?)
-            
-            ForEach(products) { product in
-                HStack {
-                    if let imageData = product.imageData,
-                       let uiImage = UIImage(data: imageData) {
-                        Image(uiImage: uiImage)
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                            .frame(width: 30, height: 30)
-                            .clipShape(RoundedRectangle(cornerRadius: 4))
+        return Menu {
+            VStack {
+                Picker("Select Product", selection: $viewModel.selectedProductID)
+                {
+                    Text("Choose a product")
+                        .tag(nil as UUID?)
+                    ForEach(products) { product in
+                        HStack {
+                            if let uiImage = viewModel.imageOf(product) {
+                                Image(uiImage: uiImage)
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                                    .frame(width: 30, height: 30)
+                                    .clipShape(RoundedRectangle(cornerRadius: 4))
+                            }
+                            Text(product.name)
+                        }
+                        .tag(product.id as UUID?)
                     }
-                    
-                    Text(product.name)
                 }
-                .tag(product.id as UUID?)
+                .pickerStyle(.inline)
+                .onChange(of: viewModel.selectedProductID) {
+                    viewModel.updateSeletedProductFrom(products)
+                }
+                
             }
+        } label: {
+            VStack {
+                if let selected = viewModel.selectedProduct {
+                    VStack {
+                        HStack {
+                                Text(selected.name)
+                                Spacer()
+                                Text("Select Other")
+                        }
+                        
+                        if let uiImage = viewModel.imageOf(selected) {
+                            Image(uiImage: uiImage)
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .frame(width: 200, height: 200)
+                                .clipShape(RoundedRectangle(cornerRadius: 4))
+                        }
+                        
+                    }
+                }
+                else {
+                    Text("Choose a product")
+                    Image(systemName: "photo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(width: 200, height: 200)
+                        .foregroundColor(.gray.opacity(0.6))
+                        .clipShape(RoundedRectangle(cornerRadius: 4))
+                }
+            }
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .multilineTextAlignment(.center)
         }
     }
-    
     
     
     var inventoryDetail: some View {
-        VStack(alignment: .leading, spacing: 16) {
-            EditStepper(label: "Units per Carton", value: $unitsPerCarton, minimum: 1)
-            EditStepper(label: "Number of Cartons", value: $numberOfCartons, minimum: 1)
+        return VStack(alignment: .leading, spacing: 16) {
+            EditStepper(label: "Units per Carton", value: $viewModel.unitsPerCarton, minimum: 1)
+            EditStepper(label: "Number of Cartons", value: $viewModel.numberOfCartons, minimum: 1)
         }
     }
     
     var summary: some View {
-        HStack {
+        return HStack {
             VStack(alignment: .leading) {
                 Text("Total Units")
                     .font(.headline)
-                Text("\(unitsPerCarton) × \(numberOfCartons) = \(totalUnits)")
+                Text(viewModel.totalText(totalUnits))
                     .font(.subheadline)
                     .foregroundColor(.secondary)
             }
@@ -176,24 +166,10 @@ struct AddInventoryForProductView: View {
     }
     
     private func saveInventory() {
-        guard let product = currentProduct else { return }
-        
-        let newInventory = Inventory(
-            product: product,
-            unitsPerCarton: unitsPerCarton,
-            numberOfCartons: numberOfCartons,
-            lastUpdated: .now
-        )
-        
-        modelContext.insert(newInventory)
-        
-        do {
-            try modelContext.save()
-            dismiss()
-        } catch {
-            print("Failed to save inventory: \(error)")
-        }
+        viewModel.saveInventory(modelContext)
+        dismiss()
     }
+    
 }
 
 #Preview {

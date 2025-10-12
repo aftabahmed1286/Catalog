@@ -30,7 +30,8 @@ class Customer {
         trnNumber: String = "",
         branch: String = "",
         address: String = "",
-        lastUpdated: Date = .now
+        lastUpdated: Date = .now,
+        invoices: [Invoice]? = nil
     ) {
         self.id = id
         self.name = name
@@ -40,13 +41,41 @@ class Customer {
         self.branch = branch
         self.address = address
         self.lastUpdated = lastUpdated
+        self.invoices = invoices
     }
 }
 
 extension Customer {
-    static var sampleData: [Customer] = [
-        Customer(name: "Alice Doe", contactNumber: "+1 555-0101", email: "alice@example.com", trnNumber: "123456789", branch: "Downtown", address: "1 Infinite Loop, Cupertino"),
-        Customer(name: "Bob Smith", contactNumber: "+1 555-0102", email: "bob@example.com", trnNumber: "987654321", branch: "Uptown", address: "500 Market St, San Francisco"),
-        Customer(name: "Carol Johnson", contactNumber: "+1 555-0103", email: "carol@example.com", trnNumber: "456789123", branch: "Midtown", address: "1600 Amphitheatre Pkwy, Mountain View")
+    
+    static var sampleData: [Customer] {[
+        Customer(
+            name: "Alice Doe",
+            contactNumber: "+1 555-0101",
+            email: "alice@example.com",
+            trnNumber: "123456789",
+            branch: "Downtown",
+            address: "1 Infinite Loop, Cupertino",
+            invoices: [Invoice.sampleData[0]]
+            
+        ),
+        Customer(
+            name: "Bob Smith",
+            contactNumber: "+1 555-0102",
+            email: "bob@example.com",
+            trnNumber: "987654321",
+            branch: "Uptown",
+            address: "500 Market St, San Francisco",
+            invoices: [Invoice.sampleData[1]]
+        ),
+        Customer(
+            name: "Carol Johnson",
+            contactNumber: "+1 555-0103",
+            email: "carol@example.com",
+            trnNumber: "456789123",
+            branch: "Midtown",
+            address: "1600 Amphitheatre Pkwy, Mountain View",
+            invoices: [Invoice.sampleData[2]]
+        )
     ]
+    }
 }

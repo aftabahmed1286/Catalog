@@ -53,13 +53,13 @@ struct Dashboard: View {
                 Spacer()
                 
                 // Sample Data Button
-                Button("Load Sample Data") {
-                    loadSampleData()
-                }
-                .padding()
-                .background(Color.gray.opacity(0.2))
-                .cornerRadius(12)
-                .padding(.horizontal)
+//                Button("Load Sample Data") {
+//                    loadSampleData()
+//                }
+//                .padding()
+//                .background(Color.gray.opacity(0.2))
+//                .cornerRadius(12)
+//                .padding(.horizontal)
             }
             .onAppear {
                 viewModel.setModelContext(modelContext)
