@@ -12,6 +12,7 @@
 		394F8CEB2E9C01040043E5CF /* Product in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CEA2E9C01040043E5CF /* Product */; };
 		394F8CEE2E9C03D20043E5CF /* Customer in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CED2E9C03D20043E5CF /* Customer */; };
 		394F8CF12E9C06000043E5CF /* Invoice in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CF02E9C06000043E5CF /* Invoice */; };
+		394F8CF42E9C076F0043E5CF /* Inventory in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CF32E9C076F0043E5CF /* Inventory */; };
 		39B9AF372E9BADCA002F0945 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 39B9AF362E9BADCA002F0945 /* Core */; };
 /* End PBXBuildFile section */
 
@@ -46,6 +47,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				394F8CF12E9C06000043E5CF /* Invoice in Frameworks */,
+				394F8CF42E9C076F0043E5CF /* Inventory in Frameworks */,
 				394F8CEB2E9C01040043E5CF /* Product in Frameworks */,
 				394F8CE62E9BBAFF0043E5CF /* PaymentReceipt in Frameworks */,
 				39B9AF372E9BADCA002F0945 /* Core in Frameworks */,
@@ -99,6 +101,7 @@
 				394F8CEA2E9C01040043E5CF /* Product */,
 				394F8CED2E9C03D20043E5CF /* Customer */,
 				394F8CF02E9C06000043E5CF /* Invoice */,
+				394F8CF32E9C076F0043E5CF /* Inventory */,
 			);
 			productName = ProductCatalogApp;
 			productReference = 3924D2A72E95223F00F5D8CB /* ProductCatalogApp.app */;
@@ -134,6 +137,7 @@
 				394F8CE92E9C01040043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/Product" */,
 				394F8CEC2E9C03D20043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/Customer" */,
 				394F8CEF2E9C06000043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/Invoice" */,
+				394F8CF22E9C076F0043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/Inventory" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3924D2A82E95223F00F5D8CB /* Products */;
@@ -425,6 +429,10 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../CatalogPackages/Invoice;
 		};
+		394F8CF22E9C076F0043E5CF /* XCLocalSwiftPackageReference "../CatalogPackages/Inventory" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../CatalogPackages/Inventory;
+		};
 		39B9AF352E9BADCA002F0945 /* XCLocalSwiftPackageReference "../CatalogPackages/Core" */ = {
 			isa = XCLocalSwiftPackageReference;
 			relativePath = ../CatalogPackages/Core;
@@ -451,6 +459,10 @@
 		394F8CF02E9C06000043E5CF /* Invoice */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Invoice;
+		};
+		394F8CF32E9C076F0043E5CF /* Inventory */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Inventory;
 		};
 		39B9AF362E9BADCA002F0945 /* Core */ = {
 			isa = XCSwiftPackageProductDependency;
