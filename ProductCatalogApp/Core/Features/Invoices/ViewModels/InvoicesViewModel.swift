@@ -54,18 +54,3 @@ class InvoicesViewModel {
         invoices.filter { $0.customer?.id == customer.id }
     }
 }
-
-enum InvoiceError: LocalizedError {
-    case noModelContext
-    case invalidData
-    
-    var errorDescription: String? {
-        switch self {
-        case .noModelContext:
-            return "Model context is not available"
-        case .invalidData:
-            return "Invalid invoice data provided"
-        }
-    }
-}
-

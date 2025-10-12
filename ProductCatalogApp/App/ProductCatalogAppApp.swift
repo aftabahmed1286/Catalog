@@ -37,7 +37,6 @@ struct ProductCatalogAppApp: App {
         WindowGroup {
             Dashboard()
                 .modelContainer(modelContainer)
-                
         }
     }
 }

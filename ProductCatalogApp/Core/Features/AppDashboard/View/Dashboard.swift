@@ -8,6 +8,7 @@
 import SwiftUI
 import SwiftData
 import Core
+import PaymentReceipt
 
 struct Dashboard: View {
     @Environment(\.modelContext) private var modelContext
