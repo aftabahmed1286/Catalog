@@ -1,13 +1,13 @@
 ## Invoice App (ProductCatalogApp)
 
 ### Overview
-This is a SwiftUI iOS/macOS app for managing invoices, customers, products, inventory, and payment receipts. Data is persisted with SwiftData and synchronized via CloudKit using a private iCloud container.
+This is a SwiftUI iOS/macCatalyst app for managing invoices, customers, products, inventory, and payment receipts. Data is persisted with SwiftData and synchronized via CloudKit using a private iCloud container.
 
 The app launches into a `Dashboard` composed from modular Swift Package components. Core domain models such as `Product`, `Inventory`, `Customer`, `Invoice`, `LineItem`, and `PaymentReceipt` are stored in a single SwiftData `ModelContainer` backed by CloudKit.
 
 ### Architecture and Modules
 - **SwiftUI + SwiftData**: UI and persistence.
-- **CloudKit**: Private database sync via container `iCloud.poc.flyct.product`.
+- **CloudKit**: Private database sync via container `iCloud.<hidden>`.
 - **Modular SPM packages** (fetched via SSH):
   - **Core**: `git@github.com:aftabahmed1286/Core.git`
   - **Customer**: `git@github.com:aftabahmed1286/Customer.git`
@@ -23,16 +23,17 @@ These packages are pinned on the `main` branch via Swift Package Manager (see `P
 - **Xcode**: 16
 - **Apple Developer account** with iCloud capability
 - **GitHub SSH key** configured locally for private repo access
-- **Platforms**: iOS 26+ and/or macOS 26+ (depending on your scheme/target)
+- **Platforms**: iOS 26+ and/or macCatalyst 26+ (depending on your scheme/target)
+- **Minimum deployment targets**: iOS 26, macCatalyst 26
 
 ### App Capabilities
-- **iCloud (CloudKit)**: Uses private database with container `iCloud.poc.flyct.product`
+- **iCloud (CloudKit)**: Uses private database with container `iCloud.<hidden>`
 - **Background Modes**: `remote-notification` enabled (see `Info.plist`)
 
 ### Project Entry Point
 - `ProductCatalogApp/App/ProductCatalogAppApp.swift` defines `@main` and creates a shared `ModelContainer`:
   - Models: `Product`, `Inventory`, `Customer`, `Invoice`, `LineItem`, `PaymentReceipt`
-  - CloudKit configuration: private database on container `iCloud.poc.flyct.product`
+  - CloudKit configuration: private database on container `iCloud.<hidden>`
   - Root view: `Dashboard()`
 
 ### Getting Started
@@ -49,7 +50,7 @@ These packages are pinned on the `main` branch via Swift Package Manager (see `P
 
 4. **Configure Signing & Capabilities**
    - In your target’s Signing settings, select your team.
-   - Add the **iCloud** capability and choose the container: `iCloud.poc.flyct.product`.
+   - Add the **iCloud** capability and choose your private container (e.g., `iCloud.<hidden>`).
    - Ensure **Background Modes** includes `Remote notifications`.
 
 5. **CloudKit setup**
@@ -66,7 +67,7 @@ These packages are pinned on the `main` branch via Swift Package Manager (see `P
   - If needed, switch the package URLs to HTTPS in Xcode > Package Dependencies.
 
 - **CloudKit errors (permission/container)**
-  - Ensure iCloud is enabled in Signing & Capabilities and the container ID is exactly `iCloud.poc.flyct.product`.
+  - Ensure iCloud is enabled in Signing & Capabilities and the container ID matches your private container (e.g., `iCloud.<hidden>`).
   - Make sure the Apple ID on your device/simulator is signed in to iCloud.
 
 - **Schema or record type issues**
