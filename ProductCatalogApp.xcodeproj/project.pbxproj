@@ -16,11 +16,13 @@
 		390DC8532E9C331700771178 /* Dashboard in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC8522E9C331700771178 /* Dashboard */; };
 		390DC8562E9C332500771178 /* Inventory in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC8552E9C332500771178 /* Inventory */; };
 		390DC8592E9C333200771178 /* Invoice in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC8582E9C333200771178 /* Invoice */; };
-		390DC85F2E9C369100771178 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC85E2E9C369100771178 /* Core */; };
 		390DC8622E9C36EC00771178 /* Customer in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC8612E9C36EC00771178 /* Customer */; };
 		390DC8652E9C380A00771178 /* Customer in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC8642E9C380A00771178 /* Customer */; };
 		390DC8682E9C3AC000771178 /* Dashboard in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC8672E9C3AC000771178 /* Dashboard */; };
 		390DC86B2E9C3B0100771178 /* Invoice in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC86A2E9C3B0100771178 /* Invoice */; };
+		390DC86E2E9C3BEB00771178 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC86D2E9C3BEB00771178 /* Core */; };
+		390DC8712E9C3CE700771178 /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 390DC8702E9C3CE700771178 /* Core */; };
+		390DC87C2E9CEB8D00771178 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 390DC87B2E9CEB8C00771178 /* README.md */; };
 		394F8CE62E9BBAFF0043E5CF /* PaymentReceipt in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CE52E9BBAFF0043E5CF /* PaymentReceipt */; };
 		394F8CE82E9BFDCD0043E5CF /* Core in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CE72E9BFDCD0043E5CF /* Core */; };
 		394F8CEB2E9C01040043E5CF /* Product in Frameworks */ = {isa = PBXBuildFile; productRef = 394F8CEA2E9C01040043E5CF /* Product */; };
@@ -32,6 +34,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		390DC87B2E9CEB8C00771178 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3924D2A72E95223F00F5D8CB /* ProductCatalogApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProductCatalogApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -64,9 +67,10 @@
 				390DC8432E9C256C00771178 /* Invoice in Frameworks */,
 				394F8CF12E9C06000043E5CF /* Invoice in Frameworks */,
 				394F8CF72E9C0A460043E5CF /* Dashboard in Frameworks */,
+				390DC86E2E9C3BEB00771178 /* Core in Frameworks */,
+				390DC8712E9C3CE700771178 /* Core in Frameworks */,
 				390DC84C2E9C318D00771178 /* Core in Frameworks */,
 				394F8CF42E9C076F0043E5CF /* Inventory in Frameworks */,
-				390DC85F2E9C369100771178 /* Core in Frameworks */,
 				394F8CEB2E9C01040043E5CF /* Product in Frameworks */,
 				390DC8502E9C321F00771178 /* Customer in Frameworks */,
 				390DC8562E9C332500771178 /* Inventory in Frameworks */,
@@ -92,6 +96,7 @@
 		3924D29E2E95223F00F5D8CB = {
 			isa = PBXGroup;
 			children = (
+				390DC87B2E9CEB8C00771178 /* README.md */,
 				3924D2A92E95223F00F5D8CB /* ProductCatalogApp */,
 				3924D2A82E95223F00F5D8CB /* Products */,
 			);
@@ -142,11 +147,12 @@
 				390DC8522E9C331700771178 /* Dashboard */,
 				390DC8552E9C332500771178 /* Inventory */,
 				390DC8582E9C333200771178 /* Invoice */,
-				390DC85E2E9C369100771178 /* Core */,
 				390DC8612E9C36EC00771178 /* Customer */,
 				390DC8642E9C380A00771178 /* Customer */,
 				390DC8672E9C3AC000771178 /* Dashboard */,
 				390DC86A2E9C3B0100771178 /* Invoice */,
+				390DC86D2E9C3BEB00771178 /* Core */,
+				390DC8702E9C3CE700771178 /* Core */,
 			);
 			productName = ProductCatalogApp;
 			productReference = 3924D2A72E95223F00F5D8CB /* ProductCatalogApp.app */;
@@ -177,10 +183,10 @@
 			mainGroup = 3924D29E2E95223F00F5D8CB;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				390DC85D2E9C369100771178 /* XCRemoteSwiftPackageReference "Core" */,
 				390DC8632E9C380A00771178 /* XCRemoteSwiftPackageReference "Customer" */,
 				390DC8662E9C3AC000771178 /* XCRemoteSwiftPackageReference "Dashboard" */,
 				390DC8692E9C3B0100771178 /* XCRemoteSwiftPackageReference "Invoice" */,
+				390DC86F2E9C3CE700771178 /* XCRemoteSwiftPackageReference "Core" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 3924D2A82E95223F00F5D8CB /* Products */;
@@ -197,6 +203,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				390DC87C2E9CEB8D00771178 /* README.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -456,14 +463,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		390DC85D2E9C369100771178 /* XCRemoteSwiftPackageReference "Core" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:aftabahmed1286/Core.git";
-			requirement = {
-				branch = main;
-				kind = branch;
-			};
-		};
 		390DC8632E9C380A00771178 /* XCRemoteSwiftPackageReference "Customer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:aftabahmed1286/Customer.git";
@@ -483,6 +482,14 @@
 		390DC8692E9C3B0100771178 /* XCRemoteSwiftPackageReference "Invoice" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:aftabahmed1286/Invoice.git";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		390DC86F2E9C3CE700771178 /* XCRemoteSwiftPackageReference "Core" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:aftabahmed1286/Core.git";
 			requirement = {
 				branch = main;
 				kind = branch;
@@ -527,11 +534,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = Invoice;
 		};
-		390DC85E2E9C369100771178 /* Core */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 390DC85D2E9C369100771178 /* XCRemoteSwiftPackageReference "Core" */;
-			productName = Core;
-		};
 		390DC8612E9C36EC00771178 /* Customer */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = Customer;
@@ -550,6 +552,15 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 390DC8692E9C3B0100771178 /* XCRemoteSwiftPackageReference "Invoice" */;
 			productName = Invoice;
+		};
+		390DC86D2E9C3BEB00771178 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Core;
+		};
+		390DC8702E9C3CE700771178 /* Core */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 390DC86F2E9C3CE700771178 /* XCRemoteSwiftPackageReference "Core" */;
+			productName = Core;
 		};
 		394F8CE52E9BBAFF0043E5CF /* PaymentReceipt */ = {
 			isa = XCSwiftPackageProductDependency;

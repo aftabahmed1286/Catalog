@@ -7,7 +7,7 @@
       "location" : "git@github.com:aftabahmed1286/Core.git",
       "state" : {
         "branch" : "main",
-        "revision" : "cbccc8e4ba0dfb48832597951a77b9e1e90b0084"
+        "revision" : "c3f48abf99067a6d3ddb3d5d950b30049e1ae313"
       }
     },
     {
@@ -16,7 +16,7 @@
       "location" : "git@github.com:aftabahmed1286/Customer.git",
       "state" : {
         "branch" : "main",
-        "revision" : "3c81aaa9a8728672131d1e2cbc65dfbd5e3602e0"
+        "revision" : "b28a6105eae7e25080166c56d8a16a08cc67b216"
       }
     },
     {
@@ -25,7 +25,7 @@
       "location" : "git@github.com:aftabahmed1286/Dashboard.git",
       "state" : {
         "branch" : "main",
-        "revision" : "61a6380b648ccb65c4be9bb108d96f4bfc78b2b0"
+        "revision" : "c7e0bb637382f643c67c698ba0d2e7520c9a946e"
       }
     },
     {
@@ -34,7 +34,7 @@
       "location" : "git@github.com:aftabahmed1286/Inventory.git",
       "state" : {
         "branch" : "main",
-        "revision" : "28c4b0e0cfd4eceedd2580a94966f0ea93f4594d"
+        "revision" : "5c0a4ed5bc93cd736183f643c4bf842a6064db61"
       }
     },
     {
@@ -43,7 +43,7 @@
       "location" : "git@github.com:aftabahmed1286/Invoice.git",
       "state" : {
         "branch" : "main",
-        "revision" : "05fba733e0db885989e1ee327acf1b36b54fa68b"
+        "revision" : "19fc3110e9b5c7bc2243ac22d50ee3ef58b39abc"
       }
     },
     {
@@ -52,7 +52,7 @@
       "location" : "git@github.com:aftabahmed1286/PaymentReceipt.git",
       "state" : {
         "branch" : "main",
-        "revision" : "7a1c9efb9c0efb091035fea6c852384321d6b239"
+        "revision" : "789b686e6f4cd8b4416bc25de0c54c094587f3d7"
       }
     },
     {
@@ -61,7 +61,7 @@
       "location" : "git@github.com:aftabahmed1286/Product.git",
       "state" : {
         "branch" : "main",
-        "revision" : "62bd2e33f2969e34dfd9d4969c67825b15790beb"
+        "revision" : "dd4cf78388c4bcfc44f72dd95484ec4159e8a949"
       }
     }
   ],
